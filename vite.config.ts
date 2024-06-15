@@ -16,7 +16,7 @@ export default defineConfig({
     Components({
       dirs: ['src/components', 'src/layouts'],
       extensions: ['vue'],
-      globalComponentsDeclaration: true,
+      dts: true,
     })
   ],
   base: '/',
