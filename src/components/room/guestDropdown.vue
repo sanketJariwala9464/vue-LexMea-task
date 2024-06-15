@@ -27,7 +27,7 @@ const { isOpenGuestDropdown, assignGuestData, assignForm, handleAssign } = useRo
 
 const handleOk = async () => {
     try {
-        const isValid = await assignForm.value.validate();
+        await assignForm.value.validate();
         await handleAssign();
     } catch (error) {
         console.log(error);

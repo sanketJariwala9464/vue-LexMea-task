@@ -18,22 +18,3 @@
         </nav>
     </header>
 </template>
-
-<script setup lang=ts>
-import { ref, computed } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
-
-const router = useRouter()
-const route = useRoute()
-
-
-const isActive = computed(() => {
-    const currentPath = route.path
-    const urlPath = window.location.pathname
-
-    console.log(currentPath, urlPath)
-
-    return currentPath === urlPath
-})
-
-</script>

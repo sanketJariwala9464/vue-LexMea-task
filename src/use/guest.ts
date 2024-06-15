@@ -1,6 +1,7 @@
 import { ref } from "vue"
 import repository from "@/repository";
 import { message } from 'ant-design-vue';
+import { GuestCardProps } from '@/types/guest'
 
 const isOpenForm = ref(false)
 
@@ -11,7 +12,7 @@ const guestParams = ref({
     age: '',
 })
 
-const guests = ref([])
+const guests = ref<GuestCardProps[]>([])
 
 const guestId = ref(null)
 
@@ -30,7 +31,7 @@ export const useGuests = () => {
         }
     }
 
-    const getSingleGuest = async (id: string) => {
+    const getSingleGuest = async (id: number) => {
         try {
             const response = await repository.guests.getSingle(id)
             if (response.status === 200) {
@@ -54,7 +55,7 @@ export const useGuests = () => {
 
     const handleOk = async () => { 
         try {
-            const isValid = await guestForm.value.validate()
+            await guestForm.value.validate()
             const response = guestId.value ? await repository.guests.update(guestParams.value, guestId.value) : await repository.guests.create(guestParams.value)
             if (response.status === 201) {
                 message.success(response.data.message)
@@ -67,7 +68,7 @@ export const useGuests = () => {
         }
     }
 
-    const deleteGuest = async (id: string) => {
+    const deleteGuest = async (id: number) => {
         try {
             const response = await repository.guests.delete(id)
             if (response.status === 200) {

@@ -14,9 +14,12 @@ const roomParams = ref({
     capacity: '',
 })
 
-const assignGuestData = ref({
-    roomId: '',
-    guest_id: ''
+const assignGuestData = ref<{
+    roomId: number,
+    guest_id: number
+}>({
+    roomId: 0,
+    guest_id: 0
 })
 
 const rooms = ref([])
@@ -45,7 +48,7 @@ export const useRoom = () => {
 
     const handleOk = async () => { 
         try {
-            const isValid = await roomForm.value.validate()
+            await roomForm.value.validate()
             const response = await repository.rooms.create(roomParams.value)
             if (response.status === 201) {
                 message.success(response.data.message)
@@ -65,8 +68,8 @@ export const useRoom = () => {
                 message.success(response.data.message)
                 if (isOpenGuestDropdown.value) {
                     isOpenGuestDropdown.value = false
-                    assignGuestData.value.roomId = ''
-                    assignGuestData.value.guest_id = ''
+                    assignGuestData.value.roomId = 0
+                    assignGuestData.value.guest_id = 0
                 }
                 getRooms()
             } else 

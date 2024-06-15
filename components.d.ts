@@ -13,7 +13,6 @@ declare module 'vue' {
     GuestDropdown: typeof import('./src/components/room/guestDropdown.vue')['default']
     Header: typeof import('./src/components/Header.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
-    Main: typeof import('./src/layouts/main.vue')['default']
     MainLayout: typeof import('./src/layouts/mainLayout.vue')['default']
     RoomCard: typeof import('./src/components/RoomCard.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
